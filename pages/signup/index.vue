@@ -1,6 +1,5 @@
 <template>
-  <div>
-    Home page
+  <div class="w-full">
     <SignUp />
   </div>
 </template>
