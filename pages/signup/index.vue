@@ -1,7 +1,5 @@
 <template>
-  <div class="w-full">
-    <SignUp />
-  </div>
+  <SignUp />
 </template>
 <script>
 import SignUp from '~/components/SignUp.vue'

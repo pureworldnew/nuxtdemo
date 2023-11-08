@@ -23,7 +23,7 @@
           >
             Sign in to your account
           </h1>
-          <form class="space-y-4 md:space-y-6" action="#">
+          <form class="space-y-4 md:space-y-6" @submit.prevent="handleSubmit">
             <div>
               <label
                 for="email"
@@ -37,6 +37,7 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@company.com"
                 required=""
+                v-model="email"
               />
             </div>
             <div>
@@ -52,6 +53,7 @@
                 placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required=""
+                v-model="password"
               />
             </div>
             <div class="flex items-center justify-between">
@@ -99,7 +101,33 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    handleSubmit: function () {
+      console.log(this.email, this.password)
+      const option = {
+        method: 'POST',
+        url: 'http://localhost:9000/login',
+        data: {
+          username: this.email,
+          password: this.password,
+        },
+      }
+      this.$axios(option)
+        .then((res) => {
+          console.log(res)
+          this.$router.push('/dashboard')
+        })
+        .catch((e) => console.log(e))
+    },
+  },
+}
 </script>
 
 <style></style>
