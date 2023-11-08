@@ -110,7 +110,35 @@ export default {
       },
     },
   },
-  router: {
-    middleware: ['auth'],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/login',
+            method: 'post',
+            propertyName: false,
+          },
+          logout: {
+            url: '/logout',
+            method: 'post',
+          },
+          user: {
+            url: '/auth/profile',
+            method: 'get',
+            propertyName: false,
+          },
+        },
+        tokenRequired: false,
+        tokenType: false,
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/signup',
+      home: '/dashboard',
+    },
+    watchLoggedIn: true,
+    rewriteRedirects: true,
   },
 }

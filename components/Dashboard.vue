@@ -892,6 +892,8 @@
 
 <script>
 export default {
+  name: 'DashboardPage',
+  middleware: ['auth'],
   data() {
     return {
       books: [],

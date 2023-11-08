@@ -109,8 +109,12 @@ export default {
     }
   },
   methods: {
-    handleSubmit: function () {
+    handleSubmit: async function () {
       console.log(this.email, this.password)
+      const credentials = {
+        username: this.email,
+        password: this.password,
+      }
       const option = {
         method: 'POST',
         url: 'http://localhost:9000/login',
@@ -119,10 +123,17 @@ export default {
           password: this.password,
         },
       }
+      // try {
+      //   await this.$auth.loginWith('local', {
+      //     data: credentials,
+      //   })
+      //   this.$router.push('/dashboard')
+      // } catch (e) {
+      //   this.$router.push('/login')
+      // }
       this.$axios(option)
         .then((res) => {
           console.log(res)
-          this.$auth.setUser(user)
           this.$router.push('/dashboard')
         })
         .catch((e) => console.log(e))
