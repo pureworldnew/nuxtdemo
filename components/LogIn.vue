@@ -122,6 +122,7 @@ export default {
       this.$axios(option)
         .then((res) => {
           console.log(res)
+          this.$auth.setUser(user)
           this.$router.push('/dashboard')
         })
         .catch((e) => console.log(e))

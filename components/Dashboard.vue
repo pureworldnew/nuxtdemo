@@ -904,6 +904,7 @@ export default {
       .then((result) => {
         return result.data.books
       })
+
     this.favouriteBook = await fetch(
       `http://localhost:9000/users/abc/favorites`
     )
