@@ -825,9 +825,9 @@
         <div
           :class="{
             'w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl outline outline-offset-2 outline-pink-500/50':
-              book.id == favouriteBook.book,
+              book.id == favouriteBook?.book,
             'w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl':
-              book.id != favouriteBook.book,
+              book.id != favouriteBook?.book,
           }"
           v-for="book in books"
           :key="book.id"
@@ -857,7 +857,7 @@
                     >{{ `${book.description.substring(0, 15)}...` }}</a
                   >
 
-                  <div class="ml-auto" v-if="book.id == favouriteBook.book">
+                  <div class="ml-auto" v-if="book.id == favouriteBook?.book">
                     <svg
                       class="text-red-400 w-6 h-auto fill-current"
                       xmlns="http://www.w3.org/2000/svg"
@@ -893,7 +893,7 @@
 <script>
 export default {
   name: 'DashboardPage',
-  middleware: ['auth'],
+  // middleware: ['auth'],
   data() {
     return {
       books: [],
@@ -907,11 +907,11 @@ export default {
         return result.data.books
       })
 
-    this.favouriteBook = await fetch(
-      `http://localhost:9000/users/abc/favorites`
-    )
-      .then((res) => res.json())
-      .then((result) => result.data.favorites)
+    // this.favouriteBook = await fetch(
+    //   `http://localhost:9000/users/abcd/favorites`
+    // )
+    //   .then((res) => res.json())
+    //   .then((result) => result.data.favorites)
   },
 }
 </script>

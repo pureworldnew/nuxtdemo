@@ -23,6 +23,14 @@
           >
             Create and account
           </h1>
+          <div
+            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert"
+            v-if="successLogged"
+          >
+            <span class="font-medium">Success alert!</span> Please sign in with
+            your information!
+          </div>
           <form
             id="form"
             class="space-y-4 md:space-y-6"
@@ -125,6 +133,7 @@ export default {
     return {
       email: '',
       password: '',
+      successLogged: false,
     }
   },
   methods: {
@@ -139,7 +148,10 @@ export default {
         },
       }
       this.$axios(option)
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res)
+          this.successLogged = true
+        })
         .catch((e) => console.log(e))
     },
   },
